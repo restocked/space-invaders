@@ -13,14 +13,14 @@ function main () {
                 <div>
                     <h1>Galaga - Arcade Game</h1>
                 </div>
-                <button class="start-game-button">Play</button>
-                <button class="leaderboard-button">Leaderboard</button>
-                <button class="settings-button">Settings</button>
+                <button id="start-game-button">Play</button>
+                <button id="leaderboard-button">Leaderboard</button>
+                <button id="settings-button">Settings</button>
             </section>
         `)
-        document.querySelector('.start-game-button').addEventListener('click', playingPage)
-        document.querySelector('.leaderboard-button').addEventListener('click', leaderboardPage)
-        document.querySelector('.settings-button').addEventListener('click', settingsPage)
+        document.querySelector('#start-game-button').addEventListener('click', playingPage)
+        document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
+        document.querySelector('#settings-button').addEventListener('click', settingsPage)
     }
 
 // --- Leaderboard Page ---
@@ -29,11 +29,11 @@ function main () {
             <section>
                 <h1>Leaderboard</h1>
                 <ol>
-                    <li>Test</li>
-                    <li>Test</li>
-                    <li>Test</li>
-                    <li>Test</li>
-                    <li>Test</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
                 </ol>
                 <button class="home-page-button">Home</button>
             </section>
@@ -48,7 +48,6 @@ function main () {
 
 // --- Game page ---
     function playingPage () {
-        console.log('bjdfadjf');
         buildDom(`
             <section class="game-container">
                 <canvas></canvas>
@@ -69,7 +68,7 @@ function main () {
             //console.log(event)
             if (event.keyCode === 32) {
                 game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.size/2, game.spaceship.y + game.spaceship.size/2))
-                //console.log(game.bullets);
+                console.log(game.bullets);
             } else if (event.keyCode === 37) {
                 //console.log('left');
                 game.spaceship.setDirection(-1);

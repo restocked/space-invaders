@@ -2,7 +2,7 @@
 
 function Spaceship (canvas) {
     
-    this.speed = 3; 
+    this.speed = 7; 
     this.direction = 0;
     this.size = 20;
     this.height = 40;
@@ -19,6 +19,11 @@ Spaceship.prototype.draw = function () {
 }
 
 Spaceship.prototype.update = function () {
+    if (this.x < 0) {
+        this.x = 0
+    } else if (this.x+this.size > this.canvas.width) {
+        this.x = this.canvas.width - this.size
+    }
     this.x = this.x + this.direction * this.speed
 }
 
@@ -29,7 +34,6 @@ Spaceship.prototype.setDirection = function (newDir) {
 Spaceship.prototype.setLives = function () {
 
 }
-
 
 Spaceship.prototype.checkCollision = function () {
 

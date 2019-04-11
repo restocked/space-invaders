@@ -16,7 +16,7 @@ Bullet.prototype.draw = function () {
     this.ctx.fill();
 }
 
-Bullet.prototype.update =  function () {
+Bullet.prototype.update = function () {
     this.y = this.y - this.speed
 }
 

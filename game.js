@@ -12,7 +12,7 @@ function Game (canvas) {
 Game.prototype.startLoop =  function () {
 
     //this.bullets = new Bullet(this.canvas, this.spaceship)
-    for (var i = 0; i<12; i++) {
+    for (var i = 0; i<14; i++) {
         this.enemies.push(new Enemy(this.canvas, (i*50)+50))
     }
 
@@ -23,8 +23,6 @@ Game.prototype.startLoop =  function () {
         if (this.gameOver === false) {
             window.requestAnimationFrame(loop)
         }
-
-
     }
 
     window.requestAnimationFrame(loop)
@@ -38,14 +36,16 @@ Game.prototype.clearCanvas = function () {
 Game.prototype.updateCanvas = function () {
     this.spaceship.update()
     //this.enemies.update()
-    this.bullets.forEach((element) => {
+    this.bullets.forEach((element, index) => {
+        if (element.y < 50) {
+            this.bullets.splice(index, 1)
+        }
         element.update()
     })
 }
 
 Game.prototype.drawCanvas = function () {
     this.spaceship.draw()
-
     this.enemies.forEach((element) => {
         element.draw()
     })
