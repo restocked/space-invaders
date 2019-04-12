@@ -1,4 +1,4 @@
-# Space Invaders
+# Space Invaders 👾
 
 ## Description
 A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
