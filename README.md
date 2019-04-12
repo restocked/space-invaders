@@ -9,20 +9,20 @@ MVP definition, deliverables.
 
 
 ## Backlog
-Music effects
-Powerups
-Moving background
-Levels
-Diffucult settings
-Score points
-Highscore display
-Lives display
+- Music effects
+- Powerups
+- Moving background
+- Levels
+- Diffucult settings
+- Score points
+- Highscore display
+- Lives display
 
 ## Data structure
-Game
-Spaceship
-Enemy
-Bullet
+- Game
+- Spaceship
+- Enemy
+- Bullet
 
 
 ## States y States Transitions
