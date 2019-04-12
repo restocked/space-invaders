@@ -131,7 +131,7 @@ Bullet.prototype.checkCollision = function () {
 Definition of the different states and their transition (transition functions)
 
 - Home page
-  * Play game
+  - Play game
   - Leaderboard
   - Settings
 - Play screen
