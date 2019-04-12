@@ -28,12 +28,12 @@ MVP definition, deliverables.
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 
-- homePage
+- Home page
   - Play game
   - Leaderboard
   - Settings
-- playScreen
-- gameOverPage
+- Play screen
+- Game over page
   - Restart game
   - Leaderboard
   - Settings
