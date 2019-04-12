@@ -4,7 +4,7 @@
 A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
 
 
-## MVP (DOM - CANVAS)
+## MVP
 *Canvas*, the MVP is a game where the player can shoot and kill the enemies coming from the space.
 
 
