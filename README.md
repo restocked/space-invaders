@@ -1,7 +1,7 @@
 # Space Invaders
 
 ## Description
-Brief description of the project
+A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
 
 
 ## MVP (DOM - CANVAS)
@@ -9,19 +9,30 @@ MVP definition, deliverables.
 
 
 ## Backlog
-
+Music effects
+Powerups
+Moving background
+Levels
+Diffucult settings
+Score points
+Highscore display
+Lives display
 
 ## Data structure
-Classes and methods definition.
+Game
+Spaceship
+Enemy
+Bullet
 
 
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 
-- splashScreen
-- gameScreen
-- gameoverScreen
-- winScreen
+- homePage
+- playScreen
+- gameOverPage
+- Leaderboard
+- Settings
 
 
 ## Task
