@@ -10,14 +10,17 @@ function main () {
     function homePage () {
         buildDom(`
             <section>
+                <audio src="./src/01 Stage Intro.mp3" autoplay></audio>
                 <div>
-                    <h1>Galaga - Arcade Game</h1>
+                    <h1>Space Invaders</h1>
                 </div>
                 <button id="start-game-button">Play</button>
                 <button id="leaderboard-button">Leaderboard</button>
                 <button id="settings-button">Settings</button>
             </section>
         `)
+
+        document.querySelector('audio').volume = 0.3;
         document.querySelector('#start-game-button').addEventListener('click', playingPage)
         document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
         document.querySelector('#settings-button').addEventListener('click', settingsPage)
@@ -29,6 +32,11 @@ function main () {
             <section>
                 <h1>Leaderboard</h1>
                 <ol>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
+                    <li>Test Player</li>
                     <li>Test Player</li>
                     <li>Test Player</li>
                     <li>Test Player</li>
@@ -50,16 +58,16 @@ function main () {
     function playingPage () {
         buildDom(`
             <section class="game-container">
+                <audio src="./src/12 Unknown.mp3" autoplay loop></audio>
                 <canvas></canvas>
             </section>
         `)
 
-        const screenWidth = document.querySelector('.game-container').offsetWidth
-        const screenHeight = document.querySelector('.game-container').offsetHeight
-        
+        document.querySelector('audio').volume = 0.3;
+        const gameContainer = document.querySelector('.game-container')
         const myCanvas = document.querySelector('canvas')
-        myCanvas.setAttribute('width', screenWidth)
-        myCanvas.setAttribute('height', screenHeight)
+        myCanvas.setAttribute('width', gameContainer.offsetWidth)
+        myCanvas.setAttribute('height', gameContainer.offsetHeight)
 
         const game = new Game(myCanvas);
         game.startLoop();
