@@ -5,7 +5,7 @@ A simple replication of Space Invaders, one of the most famous arcade game publi
 
 
 ## MVP (DOM - CANVAS)
-*Canvas*
+*Canvas*, the MVP is a game where the player can shoot and kill the enemies coming from the space.
 
 
 ## Backlog
