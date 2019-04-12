@@ -19,7 +19,7 @@ A simple replication of Space Invaders, one of the most famous arcade game publi
 - [ ] Lives display
 
 ## Data structure
-###### Game
+#### Game
 ```
 function Game (canvas) {
     this.spaceship;
