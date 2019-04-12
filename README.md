@@ -47,7 +47,7 @@ Game.prototype.drawCanvas = function () {
 
 }
 ```
-- Spaceship
+#### Spaceship
 ```
 function Spaceship (canvas) {
     this.speed; 
@@ -81,7 +81,7 @@ Spaceship.prototype.checkCollision = function () {
 
 }
 ```
-- Enemy
+#### Enemy
 ```
 function Enemy (canvas, x) {
     this.x;
@@ -101,7 +101,7 @@ Enemy.prototype.update = function () {
 
 }
 ```
-- Bullet
+#### Bullet
 ```
 function Bullet (canvas, x, y) {
     this.x;
