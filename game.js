@@ -10,7 +10,6 @@ function Game (canvas) {
 }
 
 Game.prototype.startLoop =  function () {
-
     //this.bullets = new Bullet(this.canvas, this.spaceship)
     for (var i = 0; i<14; i++) {
         this.enemies.push(new Enemy(this.canvas, (i*50)+50))
@@ -27,7 +26,6 @@ Game.prototype.startLoop =  function () {
 
     window.requestAnimationFrame(loop)
 }
-
 
 Game.prototype.clearCanvas = function () {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)

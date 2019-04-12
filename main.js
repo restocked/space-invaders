@@ -12,9 +12,10 @@ function main () {
             <section>
                 <audio src="./src/01 Stage Intro.mp3" autoplay></audio>
                 <div>
-                    <h1>Space Invaders</h1>
+                    <h1>- Space Invaders -</h1>
+                    <img src="./img/press-start.png" width="300" height="300">
                 </div>
-                <button id="start-game-button">Play</button>
+                <button id="start-game-button">Start</button>
                 <button id="leaderboard-button">Leaderboard</button>
                 <button id="settings-button">Settings</button>
             </section>
@@ -30,18 +31,18 @@ function main () {
     function leaderboardPage () {
         buildDom(`
             <section>
-                <h1>Leaderboard</h1>
+                <h1>High Scores</h1>
                 <ol>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
-                    <li>Test Player</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
+                    <li>Test Player - 1234444</li>
                 </ol>
                 <button class="home-page-button">Home</button>
             </section>
@@ -58,16 +59,19 @@ function main () {
     function playingPage () {
         buildDom(`
             <section class="game-container">
-                <audio src="./src/12 Unknown.mp3" autoplay loop></audio>
                 <canvas></canvas>
             </section>
         `)
 
-        document.querySelector('audio').volume = 0.3;
+        //<audio src="./src/12 Unknown.mp3" autoplay loop></audio>
+
+        //document.querySelector('audio').volume = 0.3;
         const gameContainer = document.querySelector('.game-container')
         const myCanvas = document.querySelector('canvas')
         myCanvas.setAttribute('width', gameContainer.offsetWidth)
         myCanvas.setAttribute('height', gameContainer.offsetHeight)
+
+
 
         const game = new Game(myCanvas);
         game.startLoop();
@@ -76,7 +80,7 @@ function main () {
             //console.log(event)
             if (event.keyCode === 32) {
                 game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.size/2, game.spaceship.y + game.spaceship.size/2))
-                console.log(game.bullets);
+                //console.log(game.bullets);
             } else if (event.keyCode === 37) {
                 //console.log('left');
                 game.spaceship.setDirection(-1);
@@ -109,7 +113,6 @@ function main () {
         document.querySelector('.leaderboard-button').addEventListener('click', leaderboardPage)
         document.querySelector('.home-page-button').addEventListener('click', homePage)
     }
-
     homePage()
 }
 
