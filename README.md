@@ -29,10 +29,18 @@ MVP definition, deliverables.
 Definition of the different states and their transition (transition functions)
 
 - homePage
+  - Play game
+  - Leaderboard
+  - Settings
 - playScreen
 - gameOverPage
+  - Restart game
+  - Leaderboard
+  - Settings
 - Leaderboard
+  - Home page
 - Settings
+  - Home page
 
 
 ## Task
@@ -43,12 +51,12 @@ Task definition in order of priority
 
 
 ### Trello
-[Link url](https://trello.com)
+[Link url](https://trello.com/b/ftaqBzIG/my-js-game)
 
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
+[Link Repo](https://github.com/wervux/space-invaders-arcade-game)
 [Link Deploy](http://github.com)
 
 
