@@ -135,6 +135,7 @@ Definition of the different states and their transition (transition functions)
   - Leaderboard
   - Settings
 - Play screen
+    - Game over
 - Game over page
   - Restart game
   - Leaderboard
