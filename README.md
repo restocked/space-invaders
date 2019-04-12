@@ -51,7 +51,7 @@ Task definition in order of priority
 
 
 ### Trello
-[Link url](https://trello.com/b/ftaqBzIG/my-js-game)
+- [Link url](https://trello.com/b/ftaqBzIG/my-js-game)
 
 
 ### Git
@@ -62,4 +62,4 @@ URls for the project repo and deploy
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+- [Link Slides.com](http://slides.com)
