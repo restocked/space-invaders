@@ -46,7 +46,7 @@ button:hover, button:focus {
 }
 
 li {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 li:first-child {
     margin-top: 60px;
@@ -77,15 +77,21 @@ img {
     width: 100%;
     height: 100vh;
     background-image: url('../img/background-best.png');
-    animation: slide 20s linear infinite;
+    animation: slide 40s linear infinite;
 }
 @keyframes slide {
     from { background-position: 0 0; }
-    to { background-position: 0 600px; }
+    to { background-position: 0 1000px; }
 }
 
 .game-container {
     width: 98%;
     height: 100vh;
     margin: 0 auto;
+}
+
+
+#setting-list li {
+    list-style-type: none;
+    text-align: center;
 }

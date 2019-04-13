@@ -13,18 +13,20 @@ function main () {
                 <audio src="./src/01 Stage Intro.mp3" autoplay></audio>
                 <div>
                     <h1>- Space Invaders -</h1>
-                    <img src="./img/press-start.png" width="300" height="300">
+                    <img src="./img/press-start-logo.png" width="300" height="300">
                 </div>
                 <button id="start-game-button">Start</button>
                 <button id="leaderboard-button">Leaderboard</button>
                 <button id="settings-button">Settings</button>
             </section>
         `)
-
+        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
         document.querySelector('audio').volume = 0.3;
         document.querySelector('#start-game-button').addEventListener('click', playingPage)
         document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
         document.querySelector('#settings-button').addEventListener('click', settingsPage)
+
+        
     }
 
 // --- Leaderboard Page ---
@@ -47,12 +49,25 @@ function main () {
                 <button class="home-page-button">Home</button>
             </section>
         `)
+        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
         document.querySelector('.home-page-button').addEventListener('click', homePage)
     }
 
 // --- Settings page ---
     function settingsPage () {
-        //to do
+        buildDom(`
+            <section>
+                <h1>Settings</h1>
+                <ul id="setting-list">
+                    <li>Difficult</li>
+                    <li>Something else</li>
+                    <li>Other</li>
+                </ul>
+                <button class="home-page-button">Home</button>
+            </section>
+        `)
+        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
+        document.querySelector('.home-page-button').addEventListener('click', homePage)
     }
 
 // --- Game page ---
@@ -62,19 +77,18 @@ function main () {
                 <canvas></canvas>
             </section>
         `)
-
         //<audio src="./src/12 Unknown.mp3" autoplay loop></audio>
-
         //document.querySelector('audio').volume = 0.3;
+
+        document.getElementsByClassName('container')[0].style.animation = " slide 9s linear infinite"
         const gameContainer = document.querySelector('.game-container')
         const myCanvas = document.querySelector('canvas')
         myCanvas.setAttribute('width', gameContainer.offsetWidth)
         myCanvas.setAttribute('height', gameContainer.offsetHeight)
 
-
-
         const game = new Game(myCanvas);
         game.startLoop();
+        game.setGameOver(gameOverPage)
 
         document.addEventListener('keydown', function (event) {
             //console.log(event)
@@ -109,6 +123,7 @@ function main () {
                 <button class="home-page-button">Home</button>
             </section>
         `)
+        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
         document.querySelector('.restart-button').addEventListener('click', playingPage)
         document.querySelector('.leaderboard-button').addEventListener('click', leaderboardPage)
         document.querySelector('.home-page-button').addEventListener('click', homePage)

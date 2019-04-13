@@ -21,9 +21,10 @@ Game.prototype.startLoop =  function () {
         this.drawCanvas();
         if (this.gameOver === false) {
             window.requestAnimationFrame(loop)
+        } else {
+            this.onGameOver()
         }
     }
-
     window.requestAnimationFrame(loop)
 }
 
@@ -50,4 +51,12 @@ Game.prototype.drawCanvas = function () {
     this.bullets.forEach((element) => {
         element.draw()
     })
+}
+
+Game.prototype.checkCollision = function () {
+    
+}
+
+Game.prototype.setGameOver = function (callaback) {
+    this.onGameOver = callaback;
 }
