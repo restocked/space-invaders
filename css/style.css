@@ -56,6 +56,8 @@ li:last-child {
 }
 
 img {
+    width: 300px;
+    height: 300px;
     display: block;
     margin: 40px auto 40px auto;
     animation: blink 1.5s;

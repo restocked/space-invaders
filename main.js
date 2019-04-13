@@ -13,7 +13,7 @@ function main () {
                 <audio src="./src/01 Stage Intro.mp3" autoplay></audio>
                 <div>
                     <h1>- Space Invaders -</h1>
-                    <img src="./img/press-start-logo.png" width="300" height="300">
+                    <img src="./img/press-start-logo.png"g>
                 </div>
                 <button id="start-game-button">Start</button>
                 <button id="leaderboard-button">Leaderboard</button>
@@ -26,7 +26,6 @@ function main () {
         document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
         document.querySelector('#settings-button').addEventListener('click', settingsPage)
 
-        
     }
 
 // --- Leaderboard Page ---
@@ -60,8 +59,8 @@ function main () {
                 <h1>Settings</h1>
                 <ul id="setting-list">
                     <li>Difficult</li>
-                    <li>Something else</li>
-                    <li>Other</li>
+                    <li>Some shit ...</li>
+                    <li>Some other shit ...</li>
                 </ul>
                 <button class="home-page-button">Home</button>
             </section>
