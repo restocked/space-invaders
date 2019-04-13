@@ -86,6 +86,12 @@ Game.prototype.checkCollision = function () {
             }
         })
     })
+
+    this.enemies.forEach((element) => {
+        if (element.y+element.size/2 > this.spaceship.y) {
+            this.gameOver = true
+        }
+    })
 }
 
 Game.prototype.setGameOver = function (callaback) {

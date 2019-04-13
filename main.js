@@ -116,6 +116,7 @@ function main () {
         buildDom(`
             <section>
                 <h1>GAME OVER</h1>
+                <p>YOU LOSE!</p>
                 <p>Choose one of the option below.</p>
                 <button class="restart-button">Restart</button>
                 <button class="leaderboard-button">Leaderboard</button>
