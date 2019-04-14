@@ -5,7 +5,7 @@ function Bullet (canvas, x, y) {
     this.ctx = this.canvas.getContext('2d');
     this.width = 4;
     this.height = 20;
-    this.x = x;
+    this.x = x - this.width/2;
     this.y = y;
     this.speed = 5;
 }

@@ -10,7 +10,6 @@ function Game (canvas) {
 }
 
 Game.prototype.startLoop =  function () {
-
     // to do better
     let enemiesNumber = Math.floor((this.canvas.width-200)/60)
     if (enemiesNumber % 2 !== 0) {
@@ -73,7 +72,6 @@ Game.prototype.checkCollision = function () {
             //console.log(bullet.y - bullet.height/2, 'bullet y con alterzz');
             if (bullet.y - bullet.height/2 < enemy.y+enemy.size/2) {
                 if (bullet.x > enemy.x-enemy.size/2 && bullet.x < enemy.x+enemy.size/2) {
-
                     this.enemies.splice(indexEnemy, 1)
                     this.bullets.splice(indexBullet, 1)
                     /*

@@ -74,15 +74,18 @@ function main () {
             <section class="game-container">
                 <audio src="./src/12 Unknown.mp3" autoplay></audio>
                 <div id="game-header">
-                    <div>
-                        <p>Lives</p>
+                    <div class="testing-div">
+                        <p>Lives:</p>
                         <img src="./img/spaceship.png" width="40" height="40">
                         <img src="./img/spaceship.png" width="40" height="40">
                         <img src="./img/spaceship.png" width="40" height="40">
                     </div>
                     <div>
-                        <p>Score</p>
-                        <p>99999999</p>
+                        <p id="hi-score">High score</p>
+                    </div>
+                    <div class="testing-div">
+                        <p>Score:</p>
+                        <p id="actual-score">99999999</p>
                     </div>
                 </div>
                 <canvas></canvas>
@@ -91,11 +94,14 @@ function main () {
         //<audio src="./src/12 Unknown.mp3" autoplay loop></audio>
         document.querySelector('audio').volume = 0.3;
 
-        document.getElementsByClassName('container')[0].style.animation = " slide 9s linear infinite"
+        document.getElementsByClassName('container')[0].style.animation = " slide 12s linear infinite"
         const gameContainer = document.querySelector('.game-container')
         const myCanvas = document.querySelector('canvas')
+
+        console.log(document.querySelector('#game-header').offsetHeight);
+        
         myCanvas.setAttribute('width', gameContainer.offsetWidth)
-        myCanvas.setAttribute('height', gameContainer.offsetHeight)
+        myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight)
 
         const game = new Game(myCanvas);
         game.startLoop();
@@ -104,7 +110,7 @@ function main () {
         document.addEventListener('keydown', function (event) {
             //console.log(event)
             if (event.keyCode === 32) {
-                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y + game.spaceship.width/2))
+                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y + game.spaceship.height/2))
                 //console.log(game.bullets);
             } else if (event.keyCode === 37) {
                 //console.log('left');

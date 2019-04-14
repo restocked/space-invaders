@@ -6,7 +6,7 @@ function Enemy (canvas, x, y) {
     this.size = 40;
     this.x = x;
     this.y = y;
-    this.speed = 0.5;
+    this.speed = 0.3;
     this.xDirection = 1
     this.yDirection = 1;
     this.image = new Image()
@@ -19,7 +19,7 @@ Enemy.prototype.draw = function () {
 }
 
 Enemy.prototype.update = function () {    
-    if (this.testCounter % 100 === 0) {
+    if (this.testCounter % 200 === 0) {
         if (this.switch === true) {
             this.switch = !this.switch
             this.xDirection *= -1

@@ -4,7 +4,7 @@ function Spaceship (canvas) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.width = 40;
-    this.height = 60;
+    this.height = 55;
     this.x = this.canvas.width/2;
     this.y = this.canvas.height-this.height;
     this.speed = 7; 

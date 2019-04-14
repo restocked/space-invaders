@@ -91,7 +91,7 @@ p {
 
 .game-container {
     width: 98%;
-    height: auto;
+    height: 100%;
     margin: 0 auto;
 }
 
@@ -116,11 +116,18 @@ p {
 }
 
 #game-header p {
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
-#game-header div {
-    margin: 20px 70px 40px 70px;
+.testing-div {
+    margin: 20px 70px 20px 70px;
     display: flex;
+}
 
+#hi-score {
+    color: red;
+}
+
+#actual-score {
+    color: rgb(0, 201, 0);
 }
