@@ -160,7 +160,7 @@ Task definition in order of priority
 ### Git
 URls for the project repo and deploy
 - [Link Repo](https://github.com/wervux/space-invaders-arcade-game)
-- [Link Deploy](http://github.com)
+- [Link Deploy](https://wervux.github.io/space-invaders-arcade-game/)
 
 
 ### Slides
