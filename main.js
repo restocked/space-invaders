@@ -13,7 +13,7 @@ function main () {
                 <audio src="./src/01 Stage Intro.mp3" autoplay></audio>
                 <div>
                     <h1>- Space Invaders -</h1>
-                    <img src="./img/press-start-logo.png"g>
+                    <img id="home-page-img" src="./img/press-start-logo.png">
                 </div>
                 <button id="start-game-button">Start</button>
                 <button id="leaderboard-button">Leaderboard</button>
@@ -58,7 +58,7 @@ function main () {
             <section>
                 <h1>Settings</h1>
                 <ul id="setting-list">
-                    <li>Difficult</li>
+                    <li>Change Difficult</li>
                     <li>Some shit ...</li>
                     <li>Some other shit ...</li>
                 </ul>
@@ -73,11 +73,24 @@ function main () {
     function playingPage () {
         buildDom(`
             <section class="game-container">
+                <audio src="./src/12 Unknown.mp3" autoplay></audio>
+                <div id="game-header">
+                    <div>
+                        <p>Lives</p>
+                        <img src="./img/spaceship.png" width="40" height="40">
+                        <img src="./img/spaceship.png" width="40" height="40">
+                        <img src="./img/spaceship.png" width="40" height="40">
+                    </div>
+                    <div>
+                        <p>Score</p>
+                        <p>99999999</p>
+                    </div>
+                </div>
                 <canvas></canvas>
             </section>
         `)
         //<audio src="./src/12 Unknown.mp3" autoplay loop></audio>
-        //document.querySelector('audio').volume = 0.3;
+        document.querySelector('audio').volume = 0.3;
 
         document.getElementsByClassName('container')[0].style.animation = " slide 9s linear infinite"
         const gameContainer = document.querySelector('.game-container')
@@ -111,13 +124,30 @@ function main () {
 
     }
 
+
+// --- Add name page ---
+
+    function savePlayerName() {
+        buildDom(`
+            <section>
+                <h1>Your score</h1>
+                <h2>9999999</h2>
+                <form action="#" id="save-player-form">
+                    <input type="text" name="player-name">
+                </form>
+                <button class="save-player-name" type="submit" form="save-player-form" value="submit">Save</button>
+            </section>
+        `)
+
+    }
+
 // --- Game over page ---
     function gameOverPage () {
         buildDom(`
             <section>
+                <img id="game-over-img" src="./img/game-over.gif">
                 <h1>GAME OVER</h1>
                 <p>YOU LOSE!</p>
-                <p>Choose one of the option below.</p>
                 <button class="restart-button">Restart</button>
                 <button class="leaderboard-button">Leaderboard</button>
                 <button class="home-page-button">Home</button>

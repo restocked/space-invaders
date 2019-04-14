@@ -4,9 +4,7 @@
     font-family: myAtariFont;
     src: url('../src/ARCADE_N.TTF');
 }
-/* ---- reset ---- */
 
-/* my settings */
 * {
     font-family: myAtariFont;
 }
@@ -55,7 +53,7 @@ li:last-child {
     margin-bottom: 60px;
 }
 
-img {
+#home-page-img{
     width: 300px;
     height: 300px;
     display: block;
@@ -85,6 +83,7 @@ p {
     background-image: url('../img/background-best.png');
     animation: slide 40s linear infinite;
 }
+
 @keyframes slide {
     from { background-position: 0 0; }
     to { background-position: 0 1000px; }
@@ -92,12 +91,36 @@ p {
 
 .game-container {
     width: 98%;
-    height: 100vh;
+    height: auto;
     margin: 0 auto;
 }
-
 
 #setting-list li {
     list-style-type: none;
     text-align: center;
+}
+
+#game-over-img {
+    width: 300px;
+    height: 250px;
+    display: block;
+    margin: 40px auto 0px auto;
+}
+
+/* --- Game header --- */
+
+#game-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#game-header p {
+    margin-right: 20px;
+}
+
+#game-header div {
+    margin: 20px 70px 40px 70px;
+    display: flex;
+
 }
