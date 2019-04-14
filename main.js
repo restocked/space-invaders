@@ -25,7 +25,6 @@ function main () {
         document.querySelector('#start-game-button').addEventListener('click', playingPage)
         document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
         document.querySelector('#settings-button').addEventListener('click', settingsPage)
-
     }
 
 // --- Leaderboard Page ---
@@ -105,7 +104,7 @@ function main () {
         document.addEventListener('keydown', function (event) {
             //console.log(event)
             if (event.keyCode === 32) {
-                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.size/2, game.spaceship.y + game.spaceship.size/2))
+                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y + game.spaceship.width/2))
                 //console.log(game.bullets);
             } else if (event.keyCode === 37) {
                 //console.log('left');
@@ -121,12 +120,9 @@ function main () {
                 game.spaceship.setDirection(0)
             }
         })
-
     }
 
-
 // --- Add name page ---
-
     function savePlayerName() {
         buildDom(`
             <section>

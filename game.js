@@ -1,24 +1,24 @@
 'use strict';
 
 function Game (canvas) {
+    this.canvas = canvas;
+    this.ctx = this.canvas.getContext('2d');
     this.spaceship = new Spaceship(canvas);
     this.enemies = [];
     this.bullets = [];
     this.gameOver = false;
-    this.canvas = canvas;
-    this.ctx = this.canvas.getContext('2d');
 }
 
 Game.prototype.startLoop =  function () {
-    //console.log(Math.floor((this.canvas.width-200)/60), this.canvas.width);
-    
+
+    // to do better
     let enemiesNumber = Math.floor((this.canvas.width-200)/60)
     if (enemiesNumber % 2 !== 0) {
         enemiesNumber++
     }
     for (var z = 0; z < 4; z++) {
         for (var i = 0; i < enemiesNumber; i++) {
-            this.enemies.push(new Enemy(this.canvas, (i * 60) + 80, z*50))
+            this.enemies.push(new Enemy(this.canvas, (i*60)+80, z*50))
         }
     }
 
