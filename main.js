@@ -107,7 +107,7 @@ function main () {
 
         document.addEventListener('keydown', function (event) {
             if (event.keyCode === 32) {
-                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y))
+                game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y, 1))
             } else if (event.keyCode === 37) {
                 game.spaceship.setDirection(-1);
             } else if (event.keyCode === 39) {

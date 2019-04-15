@@ -1,6 +1,6 @@
 'use strict';
 
-function Bullet (canvas, x, y) {
+function Bullet (canvas, x, y, dir) {
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d');
     this.width = 4;
@@ -8,6 +8,7 @@ function Bullet (canvas, x, y) {
     this.x = x - this.width/2;
     this.y = y;
     this.speed = 5;
+    this.direction = dir
 }
 
 Bullet.prototype.draw = function () {
@@ -16,7 +17,7 @@ Bullet.prototype.draw = function () {
 }
 
 Bullet.prototype.update = function () {
-    this.y = this.y - this.speed
+    this.y = this.y - this.speed * this.direction
 }
 
 Bullet.prototype.checkCollision = function () {

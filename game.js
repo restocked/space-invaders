@@ -5,7 +5,8 @@ function Game (canvas) {
     this.ctx = this.canvas.getContext('2d');
     this.spaceship = new Spaceship(canvas);
     this.enemies = [];
-    this.bullets = [];
+    this.spaceshipBullets = [];
+    this.enemiesBullets = []
     this.gameOver = false;
 }
 
@@ -45,10 +46,13 @@ Game.prototype.updateCanvas = function () {
     this.enemies.forEach((element) => {
         element.update()
     })
-    this.bullets.forEach((element, index) => {
+    this.spaceshipBullets.forEach((element, index) => {
         if (element.y < 0) {
-            this.bullets.splice(index, 1)
+            this.spaceshipBullets.splice(index, 1)
         }
+        element.update()
+    })
+    this.enemiesBullets.forEach((element) => {
         element.update()
     })
 }
@@ -58,14 +62,24 @@ Game.prototype.drawCanvas = function () {
     this.enemies.forEach((element) => {
         element.draw()
     })
-    this.bullets.forEach((element) => {
+
+    this.spaceshipBullets.forEach((element) => {
+        element.draw()
+    })
+    
+
+    if (Math.random() > 0.98) {
+        let randomPos = Math.floor(Math.random() * this.enemies.length)
+        this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x+this.enemies[randomPos].size/2, this.enemies[randomPos].y, -1))
+    }
+    this.enemiesBullets.forEach((element) => {
         element.draw()
     })
 }
 
 Game.prototype.checkCollision = function () {
     /*
-    this.bullets.forEach((bullet, indexBullet) => {
+    this.spaceshipBullets.forEach((bullet, indexBullet) => {
         //console.log(bullet.y, 'bullet position y')
         //console.log(bullet.x, 'bullet x');
         this.enemies.forEach((enemy, indexEnemy) => {
@@ -75,7 +89,7 @@ Game.prototype.checkCollision = function () {
             if (bullet.y - bullet.height/2 < enemy.y+enemy.size/2) {
                 if (bullet.x > enemy.x-enemy.size/2 && bullet.x < enemy.x+enemy.size/2) {
                     this.enemies.splice(indexEnemy, 1)
-                    this.bullets.splice(indexBullet, 1)
+                    this.spaceshipBullets.splice(indexBullet, 1)
 
                     this.spaceship.score += 10
                     
@@ -90,12 +104,12 @@ Game.prototype.checkCollision = function () {
     })
     */
 
-    for (let i=this.bullets.length-1; i>0; i--) {
+    for (let i=this.spaceshipBullets.length-1; i>0; i--) {
         for (let z=this.enemies.length-1; z>0; z--) {
-            if (this.bullets[i].y-this.bullets[i].height < this.enemies[z].y+this.enemies[z].size/2) {
-                if (this.bullets[i].x > this.enemies[z].x && this.bullets[i].x+this.bullets[i].width < this.enemies[z].x+this.enemies[z].size) {
+            if (this.spaceshipBullets[i].y-this.spaceshipBullets[i].height < this.enemies[z].y+this.enemies[z].size/2) {
+                if (this.spaceshipBullets[i].x > this.enemies[z].x && this.spaceshipBullets[i].x+this.spaceshipBullets[i].width < this.enemies[z].x+this.enemies[z].size) {
                     this.enemies.splice(z, 1)
-                    this.bullets.splice(i, 1)
+                    this.spaceshipBullets.splice(i, 1)
 
                     this.spaceship.score += 10
                 }
