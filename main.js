@@ -1,7 +1,6 @@
 'use strict';
 
 function main () {
-
     function buildDom(html) {
         return document.querySelector('main').innerHTML = html;
     }
@@ -64,7 +63,7 @@ function main () {
                 <button class="home-page-button">Home</button>
             </section>
         `)
-        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
+        document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
         document.querySelector('.home-page-button').addEventListener('click', homePage)
     }
 
@@ -74,18 +73,19 @@ function main () {
             <section class="game-container">
                 <audio src="./src/12 Unknown.mp3" autoplay></audio>
                 <div id="game-header">
-                    <div class="testing-div">
+                    <div class="stats">
                         <p>Lives:</p>
                         <img src="./img/spaceship.png" width="40" height="40">
                         <img src="./img/spaceship.png" width="40" height="40">
                         <img src="./img/spaceship.png" width="40" height="40">
                     </div>
                     <div>
-                        <p id="hi-score">High score</p>
+                        <p id="hi-score-text">High score</p>
+                        <p id="hi-score-points">00000</p>
                     </div>
-                    <div class="testing-div">
+                    <div class="stats">
                         <p>Score:</p>
-                        <p id="actual-score">99999999</p>
+                        <p id="actual-score"></p>
                     </div>
                 </div>
                 <canvas></canvas>
@@ -93,12 +93,10 @@ function main () {
         `)
         //<audio src="./src/12 Unknown.mp3" autoplay loop></audio>
         document.querySelector('audio').volume = 0.3;
-
         document.getElementsByClassName('container')[0].style.animation = " slide 12s linear infinite"
+
         const gameContainer = document.querySelector('.game-container')
         const myCanvas = document.querySelector('canvas')
-
-        console.log(document.querySelector('#game-header').offsetHeight);
         
         myCanvas.setAttribute('width', gameContainer.offsetWidth)
         myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight)
@@ -108,15 +106,11 @@ function main () {
         game.setGameOver(gameOverPage)
 
         document.addEventListener('keydown', function (event) {
-            //console.log(event)
             if (event.keyCode === 32) {
-                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y + game.spaceship.height/2))
-                //console.log(game.bullets);
+                game.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y))
             } else if (event.keyCode === 37) {
-                //console.log('left');
                 game.spaceship.setDirection(-1);
             } else if (event.keyCode === 39) {
-                //console.log('right');
                 game.spaceship.setDirection(1);
             }
         })
@@ -146,7 +140,7 @@ function main () {
 // --- Game over page ---
     function gameOverPage () {
         buildDom(`
-            <section>
+            <section id="game-over-page">
                 <img id="game-over-img" src="./img/game-over.gif">
                 <h1>GAME OVER</h1>
                 <p>YOU LOSE!</p>

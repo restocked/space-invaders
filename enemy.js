@@ -6,7 +6,7 @@ function Enemy (canvas, x, y) {
     this.size = 40;
     this.x = x;
     this.y = y;
-    this.speed = 0.3;
+    this.speed = 0;
     this.xDirection = 1
     this.yDirection = 1;
     this.image = new Image()

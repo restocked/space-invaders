@@ -9,6 +9,8 @@ function Spaceship (canvas) {
     this.y = this.canvas.height-this.height;
     this.speed = 7; 
     this.direction = 0;
+    this.lives = 3;
+    this.score = 0;
     this.image = new Image()
     this.image.src = './img/spaceship.png'
 }
@@ -28,10 +30,6 @@ Spaceship.prototype.update = function () {
 
 Spaceship.prototype.setDirection = function (newDir) {
     this.direction = newDir
-}
-
-Spaceship.prototype.setLives = function () {
-
 }
 
 Spaceship.prototype.checkCollision = function () {
