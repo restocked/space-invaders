@@ -99,14 +99,16 @@ Game.prototype.checkCollision = function () {
     })
 
     this.enemiesBullets.forEach((bullet, index) => {
-        if (bullet.y+bullet.height > this.spaceship.y) {
-            if (bullet.x > this.spaceship.x && bullet.x+bullet.width < this.spaceship.x+this.spaceship.width) {
+        if (bullet.y + bullet.height > this.canvas.height) {
+            this.enemiesBullets.splice(index, 1)
+        } else if (bullet.y + bullet.height > this.spaceship.y) {
+            if (bullet.x > this.spaceship.x && bullet.x + bullet.width < this.spaceship.x + this.spaceship.width) {
                 this.enemiesBullets.splice(index, 1)
                 this.spaceship.lives--
                 if (this.spaceship.lives === 0) {
                     this.gameOver = true
                 } else {
-                document.querySelector('.live-img').remove()
+                    document.querySelector('.live-img').remove()
                 }
             }
         }
