@@ -26,7 +26,8 @@ Game.prototype.startLoop =  function () {
         this.clearCanvas();
         this.updateCanvas();
         this.drawCanvas();
-        this.checkCollision()
+        this.checkCollision();
+
         if (this.gameOver === false) {
             window.requestAnimationFrame(loop)
         } else {
@@ -68,9 +69,9 @@ Game.prototype.drawCanvas = function () {
     })
     
 
-    if (Math.random() > 0.98) {
+    if (Math.random() > 0.983) {
         let randomPos = Math.floor(Math.random() * this.enemies.length)
-        this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x+this.enemies[randomPos].size/2, this.enemies[randomPos].y, -1))
+        this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x+this.enemies[randomPos].size/2, this.enemies[randomPos].y+this.enemies[randomPos].size/2, -1))
     }
     this.enemiesBullets.forEach((element) => {
         element.draw()
@@ -78,48 +79,36 @@ Game.prototype.drawCanvas = function () {
 }
 
 Game.prototype.checkCollision = function () {
-    /*
+
     this.spaceshipBullets.forEach((bullet, indexBullet) => {
-        //console.log(bullet.y, 'bullet position y')
-        //console.log(bullet.x, 'bullet x');
         this.enemies.forEach((enemy, indexEnemy) => {
-            //console.log(enemy.y+enemy.size, 'enemy position');
-            //console.log(bullet.y, 'bullet y');
-            //console.log(bullet.y - bullet.height/2, 'bullet y con alterzz');
-            if (bullet.y - bullet.height/2 < enemy.y+enemy.size/2) {
-                if (bullet.x > enemy.x-enemy.size/2 && bullet.x < enemy.x+enemy.size/2) {
+            if (bullet.y < enemy.y + enemy.size && bullet.y > enemy.y) {
+                if (bullet.x > enemy.x && bullet.x + bullet.width < enemy.x + enemy.size) {
                     this.enemies.splice(indexEnemy, 1)
                     this.spaceshipBullets.splice(indexBullet, 1)
-
                     this.spaceship.score += 10
-                    
-                    console.log('collision');
-                    console.log(enemy.x, 'enemy x');
-                    console.log(enemy.x + enemy.size / 2, 'enemy x +');
-                    console.log(enemy.x - enemy.size / 2, 'enemy x -');
-                    
                 }
             }
         })
     })
-    */
-
-    for (let i=this.spaceshipBullets.length-1; i>0; i--) {
-        for (let z=this.enemies.length-1; z>0; z--) {
-            if (this.spaceshipBullets[i].y-this.spaceshipBullets[i].height < this.enemies[z].y+this.enemies[z].size/2) {
-                if (this.spaceshipBullets[i].x > this.enemies[z].x && this.spaceshipBullets[i].x+this.spaceshipBullets[i].width < this.enemies[z].x+this.enemies[z].size) {
-                    this.enemies.splice(z, 1)
-                    this.spaceshipBullets.splice(i, 1)
-
-                    this.spaceship.score += 10
-                }
-            }
-        }
-    }
 
     this.enemies.forEach((element) => {
-        if (element.y+element.size/2 > this.spaceship.y) {
+        if (element.y + element.size / 2 > this.spaceship.y) {
             this.gameOver = true
+        }
+    })
+
+    this.enemiesBullets.forEach((bullet, index) => {
+        if (bullet.y+bullet.height > this.spaceship.y) {
+            if (bullet.x > this.spaceship.x && bullet.x+bullet.width < this.spaceship.x+this.spaceship.width) {
+                this.enemiesBullets.splice(index, 1)
+                this.spaceship.lives--
+                if (this.spaceship.lives === 0) {
+                    this.gameOver = true
+                } else {
+                document.querySelector('.live-img').remove()
+                }
+            }
         }
     })
 }

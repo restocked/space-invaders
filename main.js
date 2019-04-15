@@ -75,9 +75,9 @@ function main () {
                 <div id="game-header">
                     <div class="stats">
                         <p>Lives:</p>
-                        <img src="./img/spaceship.png" width="40" height="40">
-                        <img src="./img/spaceship.png" width="40" height="40">
-                        <img src="./img/spaceship.png" width="40" height="40">
+                        <img class="live-img" src="./img/spaceship.png" width="40" height="40">
+                        <img class="live-img" src="./img/spaceship.png" width="40" height="40">
+                        <img class="live-img" src="./img/spaceship.png" width="40" height="40">
                     </div>
                     <div>
                         <p id="hi-score-text">High score</p>
