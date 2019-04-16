@@ -1,13 +1,13 @@
 'use strict';
 
-function main () {
-    function buildDom(html) {
-        return document.querySelector('main').innerHTML = html;
-    }
+function main() {
+  function buildDom(html) {
+    return document.querySelector('main').innerHTML = html;
+  }
 
-// --- Home Page ---
-    function homePage () {
-        buildDom(`
+  // --- Home Page ---
+  function homePage() {
+    buildDom(`
             <section>
                 <audio src="./src/01 Stage Intro.mp3" autoplay></audio>
                 <div>
@@ -19,16 +19,16 @@ function main () {
                 <button id="settings-button">Settings</button>
             </section>
         `)
-        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
-        document.querySelector('audio').volume = 0.3;
-        document.querySelector('#start-game-button').addEventListener('click', playingPage)
-        document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
-        document.querySelector('#settings-button').addEventListener('click', settingsPage)
-    }
+    document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
+    document.querySelector('audio').volume = 0.3;
+    document.querySelector('#start-game-button').addEventListener('click', playingPage)
+    document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
+    document.querySelector('#settings-button').addEventListener('click', settingsPage)
+  }
 
-// --- Leaderboard Page ---
-    function leaderboardPage () {
-        buildDom(`
+  // --- Leaderboard Page ---
+  function leaderboardPage() {
+    buildDom(`
             <section>
                 <h1>High Scores</h1>
                 <ol>
@@ -46,13 +46,13 @@ function main () {
                 <button class="home-page-button">Home</button>
             </section>
         `)
-        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
-        document.querySelector('.home-page-button').addEventListener('click', homePage)
-    }
+    document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
+    document.querySelector('.home-page-button').addEventListener('click', homePage)
+  }
 
-// --- Settings page ---
-    function settingsPage () {
-        buildDom(`
+  // --- Settings page ---
+  function settingsPage() {
+    buildDom(`
             <section>
                 <h1>Settings</h1>
                 <ul id="setting-list">
@@ -63,15 +63,15 @@ function main () {
                 <button class="home-page-button">Home</button>
             </section>
         `)
-        document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
-        document.querySelector('.home-page-button').addEventListener('click', homePage)
-    }
+    document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
+    document.querySelector('.home-page-button').addEventListener('click', homePage)
+  }
 
-// --- Game page ---
-    function playingPage () {
-        buildDom(`
+  // --- Game page ---
+  function playingPage() {
+    buildDom(`
             <section class="game-container">
-                <audio src="./src/12 Unknown.mp3" autoplay></audio>
+                <audio src="./src/12 Unknown.mp3" autoplay loop></audio>
                 <div id="game-header">
                     <div class="stats">
                         <p>Lives:</p>
@@ -91,43 +91,42 @@ function main () {
                 <canvas></canvas>
             </section>
         `)
-        //<audio src="./src/12 Unknown.mp3" autoplay loop></audio>
-        document.querySelector('audio').volume = 0.3;
-        document.getElementsByClassName('container')[0].style.animation = " slide 12s linear infinite"
+    document.querySelector('audio').volume = 0.3;
+    document.getElementsByClassName('container')[0].style.animation = "slide 12s linear infinite"
 
-        const gameContainer = document.querySelector('.game-container')
-        const myCanvas = document.querySelector('canvas')
-        
-        myCanvas.setAttribute('width', gameContainer.offsetWidth)
-        myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight)
+    const gameContainer = document.querySelector('.game-container')
+    const myCanvas = document.querySelector('canvas')
 
-        const game = new Game(myCanvas);
-        game.startLoop();
-        game.setGameOver(gameOverPage)
+    myCanvas.setAttribute('width', gameContainer.offsetWidth)
+    myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight)
 
-        document.addEventListener('keydown', function (event) {
-            if (event.keyCode === 32) {
-                if (game.spaceshipBullets.length < 12) {
-                    game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y, 1, 'lightgreen'))
-                }
-                game.shootSound.play()
-            } else if (event.keyCode === 37) {
-                game.spaceship.setDirection(-1);
-            } else if (event.keyCode === 39) {
-                game.spaceship.setDirection(1);
-            }
-        })
+    const game = new Game(myCanvas);
+    game.startLoop();
+    game.setGameOver(gameOverPage)
 
-        document.addEventListener('keyup', function (event) {
-            if (event.keyCode === 37 || event.keyCode === 39) {
-                game.spaceship.setDirection(0)
-            }
-        })
-    }
+    document.addEventListener('keydown', function (event) {
+      if (event.keyCode === 32) {
+        if (game.spaceshipBullets.length < 12) {
+          game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width / 2, game.spaceship.y, 1, 'lightgreen'))
+          game.shootSound.play()
+        }
+      } else if (event.keyCode === 37) {
+        game.spaceship.setDirection(-1);
+      } else if (event.keyCode === 39) {
+        game.spaceship.setDirection(1);
+      }
+    })
 
-// --- Add name page ---
-    function savePlayerName() {
-        buildDom(`
+    document.addEventListener('keyup', function (event) {
+      if (event.keyCode === 37 || event.keyCode === 39) {
+        game.spaceship.setDirection(0)
+      }
+    })
+  }
+
+  // --- Add name page ---
+  function savePlayerName() {
+    buildDom(`
             <section>
                 <h1>Your score</h1>
                 <h2>9999999</h2>
@@ -138,11 +137,11 @@ function main () {
             </section>
         `)
 
-    }
+  }
 
-// --- Game over page ---
-    function gameOverPage () {
-        buildDom(`
+  // --- Game over page ---
+  function gameOverPage() {
+    buildDom(`
             <section id="game-over-page">
                 <img id="game-over-img" src="./img/game-over.gif">
                 <h1>GAME OVER</h1>
@@ -152,12 +151,11 @@ function main () {
                 <button class="home-page-button">Home</button>
             </section>
         `)
-        document.getElementsByClassName('container')[0].style.animation = " slide 40s linear infinite"
-        document.querySelector('.restart-button').addEventListener('click', playingPage)
-        document.querySelector('.leaderboard-button').addEventListener('click', leaderboardPage)
-        document.querySelector('.home-page-button').addEventListener('click', homePage)
-    }
-    homePage()
+    document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
+    document.querySelector('.restart-button').addEventListener('click', playingPage)
+    document.querySelector('.leaderboard-button').addEventListener('click', leaderboardPage)
+    document.querySelector('.home-page-button').addEventListener('click', homePage)
+  }
+  homePage()
 }
-
 window.addEventListener('load', main)
