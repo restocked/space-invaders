@@ -11,14 +11,14 @@ A simple replication of Space Invaders, one of the most famous arcade game publi
 
 
 ## Backlog
-- [ ] Music effects
+- [X] Music effects
 - [ ] Powerups
-- [ ] Moving background
+- [X] Moving background
 - [ ] Levels
 - [ ] Diffucult settings
-- [ ] Score points
+- [X] Score points
 - [ ] Highscore display
-- [ ] Lives display
+- [X] Lives display
 
 ## Data structure
 #### Game
