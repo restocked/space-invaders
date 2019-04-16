@@ -8,6 +8,8 @@ function Game (canvas) {
     this.spaceshipBullets = [];
     this.enemiesBullets = []
     this.gameOver = false;
+    this.shootSound = new Audio('./src/space-shoot-final.wav')
+    this.explosionSound = new Audio('./src/explosion.wav')
 }
 
 Game.prototype.startLoop =  function () {
@@ -16,7 +18,6 @@ Game.prototype.startLoop =  function () {
     if (enemiesNumber % 2 !== 0) {
         enemiesNumber++
     }
-    
     for (var z = 0; z < 4; z++) {
         for (var i = 0; i < enemiesNumber; i++) {
             this.enemies.push(new Enemy(this.canvas, (i*60)+75, z*50))
@@ -85,9 +86,17 @@ Game.prototype.checkCollision = function () {
         this.enemies.forEach((enemy, indexEnemy) => {
             if (bullet.y < enemy.y + enemy.size && bullet.y > enemy.y) {
                 if (bullet.x > enemy.x && bullet.x + bullet.width < enemy.x + enemy.size) {
-                    this.enemies.splice(indexEnemy, 1)
+                    enemy.image.src = './img/explosion.png'
+                    this.explosionSound.play()
+                    setTimeout(() => {
+                        //enemy.image.src = ''
+                        let currentIndex = this.enemies.indexOf(enemy)
+                        this.enemies.splice(currentIndex, 1)
+                        //delete this
+                    }, 50)
                     this.spaceshipBullets.splice(indexBullet, 1)
-                    this.spaceship.score += 10
+                    this.spaceship.score += 100
+
                 }
             }
         })
