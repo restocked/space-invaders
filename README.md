@@ -1,5 +1,5 @@
 # Space Invaders 👾
-
+![](https://img.shields.io/badge/language-javascript-brightgreen.svg)
 ## Description
 A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
 
