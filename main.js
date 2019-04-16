@@ -108,7 +108,7 @@ function main () {
         document.addEventListener('keydown', function (event) {
             if (event.keyCode === 32) {
                 if (game.spaceshipBullets.length < 12) {
-                    game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y, 1))
+                    game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width/2, game.spaceship.y, 1, 'lightgreen'))
                 }
                 game.shootSound.play()
             } else if (event.keyCode === 37) {

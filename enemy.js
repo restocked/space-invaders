@@ -1,6 +1,6 @@
 'use strict';
 
-function Enemy (canvas, x, y) {
+function Enemy (canvas, x, y, img) {
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d');
     this.size = 40;
@@ -10,7 +10,7 @@ function Enemy (canvas, x, y) {
     this.xDirection = 1
     this.yDirection = 1;
     this.image = new Image()
-    this.image.src = './img/enemies.png'
+    this.image.src = img
     this.testCounter = 0
 }
 

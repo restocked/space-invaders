@@ -18,12 +18,13 @@ Game.prototype.startLoop =  function () {
     if (enemiesNumber % 2 !== 0) {
         enemiesNumber++
     }
+    let images = ['./img/game-over-enemy.png', './img/enemies.png', './img/enemy-6.png', './img/enemies.png']
     for (var z = 0; z < 4; z++) {
         for (var i = 0; i < enemiesNumber; i++) {
-            this.enemies.push(new Enemy(this.canvas, (i*60)+75, z*50))
+            this.enemies.push(new Enemy(this.canvas, (i*60)+75, z*50, images[z]))
+            }
         }
-    }
-
+    
     const loop = () => {        
         this.clearCanvas();
         this.updateCanvas();
@@ -73,7 +74,7 @@ Game.prototype.drawCanvas = function () {
 
     if (Math.random() > 0.983) {
         let randomPos = Math.floor(Math.random() * this.enemies.length)
-        this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x+this.enemies[randomPos].size/2, this.enemies[randomPos].y+this.enemies[randomPos].size/2, -1))
+        this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x+this.enemies[randomPos].size/2, this.enemies[randomPos].y+this.enemies[randomPos].size/2, -1, 'red'))
     }
     this.enemiesBullets.forEach((element) => {
         element.draw()

@@ -1,6 +1,6 @@
 'use strict';
 
-function Bullet (canvas, x, y, dir) {
+function Bullet (canvas, x, y, dir, color) {
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d');
     this.width = 4;
@@ -9,10 +9,11 @@ function Bullet (canvas, x, y, dir) {
     this.y = y;
     this.speed = 5;
     this.direction = dir
+    this.bulletColor = color
 }
 
 Bullet.prototype.draw = function () {
-   this.ctx.fillStyle = 'white'
+   this.ctx.fillStyle = this.bulletColor
    this.ctx.fillRect(this.x, this.y, this.width, this.height)
 }
 
