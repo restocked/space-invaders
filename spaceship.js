@@ -31,3 +31,10 @@ Spaceship.prototype.update = function () {
 Spaceship.prototype.setDirection = function (newDir) {
   this.direction = newDir
 }
+
+Spaceship.prototype.removeLife = function () {
+  this.lives--
+  document.querySelector('.live-img').remove()
+  return (this.lives === 0 ? true : false)
+  
+}

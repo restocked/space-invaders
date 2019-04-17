@@ -31,21 +31,24 @@ function main() {
     buildDom(`
             <section>
                 <h1>High Scores</h1>
-                <ol>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
-                    <li>Test Player - 1234444</li>
+                <ol id="score"> 
                 </ol>
                 <button class="home-page-button">Home</button>
             </section>
-        `)
+        `);
+    let keys = Object.keys(window.localStorage);
+    let testArray = [];
+    for (let i=0; i<keys.length; i++) {
+      let obj = JSON.parse(window.localStorage[keys[i]])
+        testArray.push(obj)
+    }
+    testArray.sort((a,b) => b.score-a.score);
+
+    testArray.splice(0,10).forEach((element)=> {
+      var node = document.createElement("LI")
+      node.innerHTML = `${element.name} - ${element.score}`;
+      document.querySelector('#score').appendChild(node);
+    })
     document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
     document.querySelector('.home-page-button').addEventListener('click', homePage)
   }
@@ -102,7 +105,7 @@ function main() {
 
     const game = new Game(myCanvas);
     game.startLoop();
-    game.setGameOver(gameOverPage)
+    game.setGameOver(savePlayerName)
 
     document.addEventListener('keydown', function (event) {
       if (event.keyCode === 32) {
@@ -130,13 +133,22 @@ function main() {
             <section>
                 <h1>Your score</h1>
                 <h2>9999999</h2>
-                <form action="#" id="save-player-form">
-                    <input type="text" name="player-name">
+                <form action="javascript:void(0);" id="save-player-form" target="_blank">
+                    <input type="text" name="player-name" id="player-name">
                 </form>
-                <button class="save-player-name" type="submit" form="save-player-form" value="submit">Save</button>
+                <button id="save-player-name" type="submit" form="save-player-form" value="submit">Save</button>
             </section>
         `)
-
+      
+      document.querySelector('#save-player-name').addEventListener('click', ()=> {
+        let player = {
+          name: document.querySelector('#player-name').value,
+          score: this.spaceship.score 
+        }
+        window.localStorage.setItem(player.name, JSON.stringify(player))
+        
+        gameOverPage()
+      });
   }
 
   // --- Game over page ---

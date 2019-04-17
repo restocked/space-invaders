@@ -14,18 +14,12 @@ function Game(canvas) {
 
 Game.prototype.startLoop = function () {
   // to do better
-  let enemiesNumber = Math.floor((this.canvas.width - 200) / 60)
-  if (enemiesNumber % 2 !== 0) {
-    enemiesNumber++
-  }
-  let images = ['./img/enemy-1.png', './img/enemy-2-.png', './img/enemy-2-.png', './img/enemy-6.png']
-  for (var i = 0; i < 4; i++) {
-    for (var j = 0; j < enemiesNumber; j++) {
-      this.enemies.push(new Enemy(this.canvas, (j * 60) + 75, i * 50, images[i]))
-    }
-  }
+
+  this.createEnemies()
 
   const loop = () => {
+    this.checkEnemies();
+    
     this.clearCanvas();
     this.updateCanvas();
     this.drawCanvas();
@@ -82,7 +76,6 @@ Game.prototype.drawCanvas = function () {
 }
 
 Game.prototype.checkCollision = function () {
-
   this.spaceshipBullets.forEach((bullet, indexBullet) => {
     this.enemies.forEach((enemy, indexEnemy) => {
       if (bullet.y < enemy.y + enemy.size && bullet.y > enemy.y) {
@@ -90,14 +83,11 @@ Game.prototype.checkCollision = function () {
           enemy.image.src = './img/explosion.png'
           this.explosionSound.play()
           setTimeout(() => {
-            //enemy.image.src = ''
             let currentIndex = this.enemies.indexOf(enemy)
             this.enemies.splice(currentIndex, 1)
-            //delete this
           }, 50)
           this.spaceshipBullets.splice(indexBullet, 1)
           this.spaceship.score += 100
-
         }
       }
     })
@@ -115,12 +105,7 @@ Game.prototype.checkCollision = function () {
     } else if (bullet.y + bullet.height > this.spaceship.y) {
       if (bullet.x > this.spaceship.x && bullet.x + bullet.width < this.spaceship.x + this.spaceship.width) {
         this.enemiesBullets.splice(index, 1)
-        this.spaceship.lives--
-        if (this.spaceship.lives === 0) {
-          this.gameOver = true
-        } else {
-          document.querySelector('.live-img').remove()
-        }
+        this.gameOver = this.spaceship.removeLife()
       }
     }
   })
@@ -128,4 +113,23 @@ Game.prototype.checkCollision = function () {
 
 Game.prototype.setGameOver = function (callaback) {
   this.onGameOver = callaback;
+}
+
+Game.prototype.createEnemies = function () {
+  let enemiesNumber = Math.floor((this.canvas.width - 200) / 60)
+  if (enemiesNumber % 2 !== 0) {
+    enemiesNumber++
+  }
+  let images = ['./img/enemy-1.png', './img/enemy-2-.png', './img/enemy-2-.png', './img/enemy-6.png']
+  for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < enemiesNumber; j++) {
+      this.enemies.push(new Enemy(this.canvas, (j * 60) + 75, i * 50, images[i]))
+    }
+  }
+}
+
+Game.prototype.checkEnemies = function () {
+  if (this.enemies.length === 0) {
+    this.createEnemies()
+  }
 }
