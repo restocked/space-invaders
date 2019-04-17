@@ -11,6 +11,7 @@ function Spaceship(canvas) {
   this.direction = 0;
   this.lives = 3;
   this.score = 0;
+  this.currentLevel = 0;
   this.image = new Image()
   this.image.src = './img/spaceship.png'
 }

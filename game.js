@@ -40,6 +40,7 @@ Game.prototype.clearCanvas = function () {
 
 Game.prototype.updateCanvas = function () {
   document.querySelector('#actual-score').innerHTML = this.spaceship.score
+  document.querySelector('#levels').innerHTML = `Level: ${this.spaceship.currentLevel}`
   this.spaceship.update()
   this.enemies.forEach((element) => {
     element.update()
@@ -81,6 +82,8 @@ Game.prototype.checkCollision = function () {
       if (bullet.y < enemy.y + enemy.size && bullet.y > enemy.y) {
         if (bullet.x > enemy.x && bullet.x + bullet.width < enemy.x + enemy.size) {
           enemy.image.src = './img/explosion.png'
+          this.explosionSound.currentTime = 0
+          this.explosionSound.volume = 0.2
           this.explosionSound.play()
           setTimeout(() => {
             let currentIndex = this.enemies.indexOf(enemy)
@@ -120,10 +123,10 @@ Game.prototype.createEnemies = function () {
   if (enemiesNumber % 2 !== 0) {
     enemiesNumber++
   }
-  let images = ['./img/enemy-1-purple.png', './img/enemy-2-blue.png', './img/enemy-2-blue.png', './img/enemy-3-green.png']
-  for (var i = 0; i < 4; i++) {
+  let images = ['./img/enemy-1-purple.png', './img/enemy-2-blue.png', './img/enemy-2-blue.png', './img/enemy-3-green.png', './img/enemy-3-green.png']
+  for (var i = 0; i < 5; i++) {
     for (var j = 0; j < enemiesNumber; j++) {
-      this.enemies.push(new Enemy(this.canvas, (j * 60) + 75, i * 50, images[i]))
+      this.enemies.push(new Enemy(this.canvas, (j * 60) + 70, i * 40, images[i]))
     }
   }
 }
@@ -131,6 +134,7 @@ Game.prototype.createEnemies = function () {
 Game.prototype.checkEnemies = function () {
   if (this.enemies.length === 0) {
     this.createEnemies()
-    this.bulletSpawn -= 0.05
+    this.bulletSpawn -= 0.01
+    this.spaceship.currentLevel++
   }
 }

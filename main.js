@@ -20,7 +20,7 @@ function main() {
             </section>
         `)
     document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
-    document.querySelector('audio').volume = 0.3;
+    document.querySelector('audio').volume = 0.1;
     document.querySelector('#start-game-button').addEventListener('click', playingPage)
     document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
     document.querySelector('#settings-button').addEventListener('click', settingsPage)
@@ -31,6 +31,11 @@ function main() {
     buildDom(`
             <section>
                 <h1>High Scores</h1>
+                <div id="leaderboard-names">
+                  <p>Name</p>
+                  <p>Score</p>
+                  <p>Level</p>
+              </div>
                 <ol id="score">
                 </ol>
                 <button class="home-page-button">Home</button>
@@ -39,7 +44,7 @@ function main() {
     let myArray = getLeaderboardData()
     myArray.splice(0,10).forEach((element)=> {
       var node = document.createElement("LI")
-      node.innerHTML = `${element.name} | ${element.score}`;
+      node.innerHTML = `${element.name} | ${element.score} | ${element.level}`;
       document.querySelector('#score').appendChild(node);
     })
     document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
@@ -85,6 +90,9 @@ function main() {
                     </div>
                 </div>
                 <canvas></canvas>
+                <div id="footer">
+                  <p id="levels"></p>
+                </div>
             </section>
         `)
 
@@ -97,21 +105,28 @@ function main() {
     const myCanvas = document.querySelector('canvas')
 
     myCanvas.setAttribute('width', gameContainer.offsetWidth)
-    myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight)
+    console.log(document.querySelector('#footer').offsetHeight);
+    
+    myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight - document.querySelector('#footer').offsetHeight)
 
     const game = new Game(myCanvas);
     game.startLoop();
     game.setGameOver(savePlayerName)
 
+    // movements
     document.addEventListener('keydown', function (event) {
       if (event.keyCode === 32) {
         if (game.spaceshipBullets.length < 12) {
           game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width / 2, game.spaceship.y, 1, 'lightgreen'))
+          game.shootSound.currentTime =0
+          game.shootSound.volume = 0.1
           game.shootSound.play()
         }
-      } else if (event.keyCode === 37) {
+      } 
+      if (event.keyCode === 37) {
         game.spaceship.setDirection(-1);
-      } else if (event.keyCode === 39) {
+      } 
+      if (event.keyCode === 39) {
         game.spaceship.setDirection(1);
       }
     })
@@ -119,6 +134,9 @@ function main() {
     document.addEventListener('keyup', function (event) {
       if (event.keyCode === 37 || event.keyCode === 39) {
         game.spaceship.setDirection(0)
+      }
+      else if (event.keyCode === 37 || event.keyCode === 39 && leftIsPressed) {
+        //game
       }
     })
   }
@@ -142,7 +160,8 @@ function main() {
       document.querySelector('#save-player-name').addEventListener('click', ()=> {
         let player = {
           name: document.querySelector('#player-name').value,
-          score: this.spaceship.score 
+          score: this.spaceship.score,
+          level: this.spaceship.currentLevel
         }
         window.localStorage.setItem(player.name, JSON.stringify(player))
         
@@ -175,7 +194,7 @@ function main() {
 
     if (keys.length <10) {
       for (let z=0; z<10-keys.length; z++) {
-        testArray.push({name: '--', score: 0})
+        testArray.push({name: '--', score: 0, level: '0'})
       }
     }
     for (let i=0; i<keys.length; i++) {
