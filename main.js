@@ -31,7 +31,8 @@ function main() {
     buildDom(`
             <section>
                 <h1>High Scores</h1>
-                <ol id="score"> 
+                <ol id="score">
+                 
                 </ol>
                 <button class="home-page-button">Home</button>
             </section>

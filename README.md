@@ -1,4 +1,6 @@
 # Space Invaders 👾
+![](https://img.shields.io/badge/language-javascript-brightgreen.svg)
+![](https://img.shields.io/badge/release-v1.0-orange.svg)
 
 ## Description
 A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
@@ -9,14 +11,14 @@ A simple replication of Space Invaders, one of the most famous arcade game publi
 
 
 ## Backlog
-- [ ] Music effects
+- [X] Music effects
 - [ ] Powerups
-- [ ] Moving background
+- [X] Moving background
 - [ ] Levels
 - [ ] Diffucult settings
-- [ ] Score points
+- [X] Score points
 - [ ] Highscore display
-- [ ] Lives display
+- [X] Lives display
 
 ## Data structure
 #### Game
