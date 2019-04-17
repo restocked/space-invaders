@@ -32,22 +32,14 @@ function main() {
             <section>
                 <h1>High Scores</h1>
                 <ol id="score">
-                 
                 </ol>
                 <button class="home-page-button">Home</button>
             </section>
         `);
-    let keys = Object.keys(window.localStorage);
-    let testArray = [];
-    for (let i=0; i<keys.length; i++) {
-      let obj = JSON.parse(window.localStorage[keys[i]])
-        testArray.push(obj)
-    }
-    testArray.sort((a,b) => b.score-a.score);
-
-    testArray.splice(0,10).forEach((element)=> {
+    let myArray = getLeaderboardData()
+    myArray.splice(0,10).forEach((element)=> {
       var node = document.createElement("LI")
-      node.innerHTML = `${element.name} - ${element.score}`;
+      node.innerHTML = `${element.name} | ${element.score}`;
       document.querySelector('#score').appendChild(node);
     })
     document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
@@ -85,7 +77,7 @@ function main() {
                     </div>
                     <div>
                         <p id="hi-score-text">High score</p>
-                        <p id="hi-score-points">00000</p>
+                        <p id="hi-score-points"></p>
                     </div>
                     <div class="stats">
                         <p>Score:</p>
@@ -95,6 +87,9 @@ function main() {
                 <canvas></canvas>
             </section>
         `)
+
+    let myArray = getLeaderboardData()
+    document.querySelector('#hi-score-points').innerHTML =  myArray[0].score
     document.querySelector('audio').volume = 0.3;
     document.getElementsByClassName('container')[0].style.animation = "slide 12s linear infinite"
 
@@ -133,14 +128,17 @@ function main() {
     buildDom(`
             <section>
                 <h1>Your score</h1>
-                <h2>9999999</h2>
-                <form action="javascript:void(0);" id="save-player-form" target="_blank">
-                    <input type="text" name="player-name" id="player-name">
+                <h2 id="player-score"></h2>
+                <form action="javascript:void(0);" id="save-player-form">
+                <div class="cursor">
+                  <input type="text" name="player-name" id="player-name">
+                  <i></i>
+                </div>
                 </form>
                 <button id="save-player-name" type="submit" form="save-player-form" value="submit">Save</button>
             </section>
         `)
-      
+      document.querySelector('#player-score').innerHTML = this.spaceship.score
       document.querySelector('#save-player-name').addEventListener('click', ()=> {
         let player = {
           name: document.querySelector('#player-name').value,
@@ -168,6 +166,26 @@ function main() {
     document.querySelector('.restart-button').addEventListener('click', playingPage)
     document.querySelector('.leaderboard-button').addEventListener('click', leaderboardPage)
     document.querySelector('.home-page-button').addEventListener('click', homePage)
+  }
+
+  function getLeaderboardData() {
+    let keys = Object.keys(window.localStorage);
+    
+    let testArray = [];
+
+    if (keys.length <10) {
+      for (let z=0; z<10-keys.length; z++) {
+        testArray.push({name: '--', score: 0})
+      }
+    }
+    for (let i=0; i<keys.length; i++) {
+      let obj = JSON.parse(window.localStorage[keys[i]])
+      testArray.push(obj)
+    }
+    testArray.sort((a,b) => b.score-a.score);
+
+    return testArray
+
   }
   homePage()
 }

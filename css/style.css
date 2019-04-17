@@ -50,6 +50,13 @@ li {
 
 li:first-child {
     margin-top: 60px;
+    color: rgb(41, 255, 41);
+}
+li:nth-child(2) {
+    color: rgb(253, 149, 30);
+}
+li:nth-child(3) {
+    color: rgb(251, 255, 31);
 }
 
 li:last-child {
@@ -109,7 +116,6 @@ li:last-child {
     text-align: center;
 }
 
-
 /* ----- PLAYING ----- */
 #game-header {
     width: 100%;
@@ -150,4 +156,65 @@ li:last-child {
     height: 250px;
     display: block;
     margin: 40px auto 0px auto;
+}
+
+/* ----- SAVE PLAYER SCORE ----- */
+/*
+#player-name {
+    margin: 40px 0px 40px 0px;
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-bottom: 3px solid white;
+    background: white;
+}
+*/
+
+#player-score {
+    margin: 20px 0px 0px 0px;
+    font-size: 25px;
+    color:rgb(0, 201, 0);
+}
+
+.cursor {
+    position: relative;
+    margin: 40px 0px 40px 0px;
+    height: 30px;
+}
+
+.cursor input {
+    width: 300px;
+    height: 100%;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-bottom: 3px solid white;
+    background: transparent;
+}
+
+.cursor	i {
+	position: absolute;
+	width: 4px;
+    height: 85%;
+    background-color: white;
+    top: 10%;
+	animation-name: blink;
+	animation-duration: 1000ms;
+	animation-iteration-count: infinite;
+	opacity: 1;
+}
+
+.cursor input:focus + i {
+    display: none;
+}
+
+.cursor input:hover, input:focus {
+    outline: none;
+}
+
+@keyframes blink {
+	from { opacity: 1; }
+	to { opacity: 0; }
 }

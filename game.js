@@ -6,20 +6,20 @@ function Game(canvas) {
   this.spaceship = new Spaceship(canvas);
   this.enemies = [];
   this.spaceshipBullets = [];
-  this.enemiesBullets = []
+  this.enemiesBullets = [];
+  this.bulletSpawn = 0.98;
   this.gameOver = false;
   this.shootSound = new Audio('./src/space-shoot-final.wav')
   this.explosionSound = new Audio('./src/explosion.wav')
 }
 
 Game.prototype.startLoop = function () {
-  // to do better
 
   this.createEnemies()
 
   const loop = () => {
     this.checkEnemies();
-    
+
     this.clearCanvas();
     this.updateCanvas();
     this.drawCanvas();
@@ -66,7 +66,7 @@ Game.prototype.drawCanvas = function () {
   })
 
 
-  if (Math.random() > 0.983) {
+  if (Math.random() > this.bulletSpawn) {
     let randomPos = Math.floor(Math.random() * this.enemies.length)
     this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x + this.enemies[randomPos].size / 2, this.enemies[randomPos].y + this.enemies[randomPos].size / 2, -1, 'red'))
   }
@@ -120,7 +120,7 @@ Game.prototype.createEnemies = function () {
   if (enemiesNumber % 2 !== 0) {
     enemiesNumber++
   }
-  let images = ['./img/enemy-1.png', './img/enemy-2-.png', './img/enemy-2-.png', './img/enemy-6.png']
+  let images = ['./img/enemy-1-purple.png', './img/enemy-2-blue.png', './img/enemy-2-blue.png', './img/enemy-3-green.png']
   for (var i = 0; i < 4; i++) {
     for (var j = 0; j < enemiesNumber; j++) {
       this.enemies.push(new Enemy(this.canvas, (j * 60) + 75, i * 50, images[i]))
@@ -131,5 +131,6 @@ Game.prototype.createEnemies = function () {
 Game.prototype.checkEnemies = function () {
   if (this.enemies.length === 0) {
     this.createEnemies()
+    this.bulletSpawn -= 0.05
   }
 }
