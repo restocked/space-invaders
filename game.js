@@ -69,7 +69,7 @@ Game.prototype.drawCanvas = function () {
 
   if (Math.random() > this.bulletSpawn) {
     let randomPos = Math.floor(Math.random() * this.enemies.length)
-    this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x + this.enemies[randomPos].size / 2, this.enemies[randomPos].y + this.enemies[randomPos].size / 2, -1, 'red'))
+    this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x + this.enemies[randomPos].size / 2, this.enemies[randomPos].y + this.enemies[randomPos].size / 2, -1, '#FF4C20'))
   }
   this.enemiesBullets.forEach((element) => {
     element.draw()
@@ -97,7 +97,7 @@ Game.prototype.checkCollision = function () {
   })
 
   this.enemies.forEach((element) => {
-    if (element.y + element.size / 2 > this.spaceship.y) {
+    if (element.y + element.size/2 > this.spaceship.y) {
       this.gameOver = true
     }
   })
@@ -126,7 +126,7 @@ Game.prototype.createEnemies = function () {
   let images = ['./img/enemy-1-purple.png', './img/enemy-2-blue.png', './img/enemy-2-blue.png', './img/enemy-3-green.png', './img/enemy-3-green.png']
   for (var i = 0; i < 5; i++) {
     for (var j = 0; j < enemiesNumber; j++) {
-      this.enemies.push(new Enemy(this.canvas, (j * 60) + 70, i * 40, images[i]))
+      this.enemies.push(new Enemy(this.canvas, (j*60)+60, i*40, images[i], (this.spaceship.currentLevel*1.5)+1.5))
     }
   }
 }
@@ -134,7 +134,7 @@ Game.prototype.createEnemies = function () {
 Game.prototype.checkEnemies = function () {
   if (this.enemies.length === 0) {
     this.createEnemies()
-    this.bulletSpawn -= 0.01
+    this.bulletSpawn -= 0.02
     this.spaceship.currentLevel++
   }
 }

@@ -16,14 +16,14 @@ function main() {
                 </div>
                 <button id="start-game-button">Start</button>
                 <button id="leaderboard-button">Leaderboard</button>
-                <button id="settings-button">Settings</button>
+                <button id="instructions-button">Instructions</button>
             </section>
         `)
     document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
     document.querySelector('audio').volume = 0.1;
     document.querySelector('#start-game-button').addEventListener('click', playingPage)
     document.querySelector('#leaderboard-button').addEventListener('click', leaderboardPage)
-    document.querySelector('#settings-button').addEventListener('click', settingsPage)
+    document.querySelector('#instructions-button').addEventListener('click', instructionsPage)
   }
 
   // --- Leaderboard Page ---
@@ -58,13 +58,13 @@ function main() {
                 <h1>Settings</h1>
                 <ul id="setting-list">
                     <li>Change Difficult</li>
-                    <li>Some shit ...</li>
-                    <li>Some other shit ...</li>
                 </ul>
+                <button class="instructions-button">Instructions</button>
                 <button class="home-page-button">Home</button>
             </section>
         `)
     document.getElementsByClassName('container')[0].style.animation = "slide 40s linear infinite"
+    document.querySelector('.instructions-button').addEventListener('click', instructionsPage)
     document.querySelector('.home-page-button').addEventListener('click', homePage)
   }
 
@@ -76,9 +76,9 @@ function main() {
                 <div id="game-header">
                     <div class="stats">
                         <p>Lives:</p>
-                        <img class="live-img" src="./img/spaceship.png" width="40" height="40">
-                        <img class="live-img" src="./img/spaceship.png" width="40" height="40">
-                        <img class="live-img" src="./img/spaceship.png" width="40" height="40">
+                        <img class="live-img" src="./test-img/spaceship-3.png" width="30" height="30">
+                        <img class="live-img" src="./test-img/spaceship-3.png" width="30" height="30">
+                        <img class="live-img" src="./test-img/spaceship-3.png" width="30" height="30">
                     </div>
                     <div>
                         <p id="hi-score-text">High score</p>
@@ -105,8 +105,6 @@ function main() {
     const myCanvas = document.querySelector('canvas')
 
     myCanvas.setAttribute('width', gameContainer.offsetWidth)
-    console.log(document.querySelector('#footer').offsetHeight);
-    
     myCanvas.setAttribute('height', gameContainer.offsetHeight - document.querySelector('#game-header').offsetHeight - document.querySelector('#footer').offsetHeight)
 
     const game = new Game(myCanvas);
@@ -117,7 +115,7 @@ function main() {
     document.addEventListener('keydown', function (event) {
       if (event.keyCode === 32) {
         if (game.spaceshipBullets.length < 12) {
-          game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width / 2, game.spaceship.y, 1, 'lightgreen'))
+          game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width / 2, game.spaceship.y, 1, '#EBFF20'))
           game.shootSound.currentTime =0
           game.shootSound.volume = 0.1
           game.shootSound.play()
@@ -205,6 +203,24 @@ function main() {
 
     return testArray
 
+  }
+
+  function instructionsPage() {
+    buildDom(`
+      <section>
+        <h1>Instructions</h1>
+        <div id="instructions">
+          <p>- Use the <span id="color-text-ins">left</span> and <span id="color-text-ins">right</span> arrow keys to move the spaceship.</p>
+          <p>- Use the <span id="color-text-ins">spacebar</span> to shoot the  aliens.</p>
+          <p>- Kill the aliens to earn points.</p>
+        </div>
+        <button id="start-game-button">Play</button>
+        <button class="home-page-button">Home</button>
+      </section>
+    
+    `)
+    document.querySelector('#start-game-button').addEventListener('click', playingPage)
+    document.querySelector('.home-page-button').addEventListener('click', homePage)
   }
   homePage()
 }

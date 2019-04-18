@@ -224,7 +224,7 @@ li:last-child {
     height: 85%;
     background-color: white;
     top: 10%;
-	animation-name: blink;
+	animation-name: blink-cursor;
 	animation-duration: 1000ms;
 	animation-iteration-count: infinite;
 	opacity: 1;
@@ -238,7 +238,30 @@ li:last-child {
     outline: none;
 }
 
-@keyframes blink {
+@keyframes blink-cursor {
 	from { opacity: 1; }
 	to { opacity: 0; }
+}
+
+/* INSTRUCTIONS */
+
+#instructions {
+    width: 80%;
+    margin: 40px 0px 60px 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+#instructions p {
+    margin: 20px 0px 20px 0px;
+}
+
+#color-text-ins {
+    color: chartreuse;
+}
+
+
+.live-img {
+    margin-right: 10px; 
 }

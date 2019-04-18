@@ -4,7 +4,7 @@ function Spaceship(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.width = 40;
-  this.height = 55;
+  this.height = 50;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - this.height;
   this.speed = 7;
@@ -13,7 +13,7 @@ function Spaceship(canvas) {
   this.score = 0;
   this.currentLevel = 0;
   this.image = new Image()
-  this.image.src = './img/spaceship.png'
+  this.image.src = './test-img/spaceship-3.png'
 }
 
 Spaceship.prototype.draw = function () {
