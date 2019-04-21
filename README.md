@@ -34,7 +34,6 @@ function Game () {
 Game.prototype.startLoop =  function () {
 }
 
-
 Game.prototype.clearCanvas = function () {
 }
 
@@ -42,7 +41,6 @@ Game.prototype.updateCanvas = function () {
 }
 
 Game.prototype.drawCanvas = function () {
-
 }
 
 Game.prototype.checkCollision = function () {
