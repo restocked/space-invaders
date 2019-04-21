@@ -11,121 +11,136 @@ A simple replication of Space Invaders, one of the most famous arcade game publi
 
 
 ## Backlog
-- [X] Music effects
 - [ ] Powerups
-- [X] Moving background
-- [ ] Levels
-- [ ] Diffucult settings
-- [X] Score points
-- [ ] Highscore display
-- [X] Lives display
+- [ ] Settings
+- [ ] More sprites for aliens
+- [ ] Barriers
 
 ## Data structure
 #### Game
 ```
-function Game (canvas) {
-    this.spaceship;
-    this.enemies;
-    this.bullets;
-    this.gameOver;
-    this.canvas;
-    this.ctx;
+function Game () {
+  this.canvas
+  this.ctx
+  this.spaceship
+  this.enemies
+  this.enemiesBullets
+  this.bulletSpawn
+  this.gameOver
+  this.shootSound
+  this.explosionSound
 }
 
 Game.prototype.startLoop =  function () {
-
 }
 
 
 Game.prototype.clearCanvas = function () {
-
 }
 
 Game.prototype.updateCanvas = function () {
-
 }
 
 Game.prototype.drawCanvas = function () {
 
 }
+
+Game.prototype.checkCollision = function () {
+}
+
+Game.prototype.setGameOver = function () {
+}
+
+Game.prototype.createEnemies = function () {
+}
+
+Game.prototype.checkEnemies = function () {
+}
 ```
 #### Spaceship
 ```
-function Spaceship (canvas) {
-    this.speed; 
-    this.direction;
-    this.size;
-    this.height;
-    this.canvas;
-    this.ctx;
-    this.x;
-    this.y;
-    
+function Spaceship () {
+  this.canvas
+  this.ctx
+  this.width
+  this.height
+  this.x
+  this.y
+  this.speed
+  this.direction
+  this.lives
+  this.score
+  this.currentLevel
+  this.bullets
+  this.image
+  this.image.src
 }
 
 Spaceship.prototype.draw = function () {
-
 }
 
 Spaceship.prototype.update = function () {
-
 }
 
-Spaceship.prototype.setDirection = function (newDir) {
-
+Spaceship.prototype.setDirection = function () {
 }
 
-Spaceship.prototype.setLives = function () {
-
+Spaceship.prototype.removeLife = function () {
 }
 
-Spaceship.prototype.checkCollision = function () {
+Spaceship.prototype.updateScore = function () {
+}
 
+Spaceship.prototype.levelUp = function () {
 }
 ```
 #### Enemy
 ```
-function Enemy (canvas, x) {
-    this.x;
-    this.y;
-    this.size;
-    this.speed;
-    this.direction;
-    this.canvas;
-    this.ctx;
+function Enemy () {
+  this.canvas
+  this.ctx
+  this.size
+  this.x
+  this.y
+  this.speed
+  this.xDirection
+  this.yDirection
+  this.axis
+  this.startingXPos
+  this.startingYPos
+  this.bullets
+  this.image
+  this.image.src
 }
 
 Enemy.prototype.draw = function () {
-
 }
 
 Enemy.prototype.update = function () {
+}
 
+Enemy.prototype.movement = function (movingAxis) {
 }
 ```
 #### Bullet
 ```
-function Bullet (canvas, x, y) {
-    this.x;
-    this.y;
-    this.size;
-    this.speed;
-    this.canvas;
-    this.ctx;
+function Bullet () {
+  this.canvas
+  this.ctx
+  this.width
+  this.height
+  this.x
+  this.y
+  this.speed
+  this.direction
+  this.bulletColor
 }
 
 Bullet.prototype.draw = function () {
-
 }
 
 Bullet.prototype.update = function () {
-
 }
-
-Bullet.prototype.checkCollision = function () {
-
-}
-
 ```
 
 
@@ -135,7 +150,7 @@ Definition of the different states and their transition (transition functions)
 - Home page
   - Play game
   - Leaderboard
-  - Settings
+  - Instructions
 - Play screen
     - Game over
 - Game over page
@@ -144,7 +159,8 @@ Definition of the different states and their transition (transition functions)
   - Settings
 - Leaderboard
   - Home page
-- Settings
+- Instructions
+  - Play
   - Home page
 
 
@@ -167,4 +183,4 @@ URls for the project repo and deploy
 
 ### Slides
 URls for the project presentation (slides)
-- [Link Slides.com](http://slides.com)
+- [Link Google Slides](https://docs.google.com/presentation/d/1TM-0qc88LtxYsQtd7t1R7HkYwRR-ZYOkldquaUGocK4/edit?usp=sharing)
