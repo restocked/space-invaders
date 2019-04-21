@@ -99,9 +99,9 @@ function main() {
                 <div id="game-header">
                     <div class="stats">
                         <p>Lives:</p>
-                        <img class="live-img" src="./test-img/spaceship-3.png" width="30" height="30">
-                        <img class="live-img" src="./test-img/spaceship-3.png" width="30" height="30">
-                        <img class="live-img" src="./test-img/spaceship-3.png" width="30" height="30">
+                        <img class="live-img" src="./img/spaceship.png" width="30" height="30">
+                        <img class="live-img" src="./img/spaceship.png" width="30" height="30">
+                        <img class="live-img" src="./img/spaceship.png" width="30" height="30">
                     </div>
                     <div>
                         <p id="hi-score-text">High score</p>

@@ -15,6 +15,7 @@ A simple replication of Space Invaders, one of the most famous arcade game publi
 - [ ] Settings
 - [ ] More sprites for aliens
 - [ ] Barriers
+- [ ] Add animations and sound when the spaceship get hits
 
 ## Data structure
 #### Game

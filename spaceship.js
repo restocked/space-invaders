@@ -14,7 +14,7 @@ function Spaceship(canvas) {
   this.currentLevel = 0;
   this.bullets = [];
   this.image = new Image()
-  this.image.src = './test-img/spaceship-3.png'
+  this.image.src = './img/spaceship.png'
 }
 
 Spaceship.prototype.draw = function () {
