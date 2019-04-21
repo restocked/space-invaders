@@ -9,12 +9,12 @@ function Enemy(canvas, x, y, img, increasedSpeed) {
   this.speed = increasedSpeed;
   this.xDirection = 1
   this.yDirection = 1;
-  this.image = new Image()
-  this.image.src = img
-  this.axis = 'x'
-  this.startingXPos = this.x
-  this.startingYPos = this.y
-  this.switch = true
+  this.axis = 'x';
+  this.startingXPos = this.x;
+  this.startingYPos = this.y;
+  this.bullets = [];
+  this.image = new Image();
+  this.image.src = img;
 }
 
 Enemy.prototype.draw = function () {
@@ -29,7 +29,6 @@ Enemy.prototype.movement = function (movingAxis) {
   if (movingAxis === 'x') {
     this.x += this.xDirection * this.speed
     if (Math.abs(this.startingXPos - this.x) > 100) {
-      this.switch = !this.switch
       this.xDirection *= -1
       this.axis = 'y'
       this.startingYPos = this.y
@@ -37,7 +36,6 @@ Enemy.prototype.movement = function (movingAxis) {
   } else {
     this.y += this.yDirection * this.speed
     if (Math.abs(this.startingYPos - this.y) > 15) {
-      //change direction
       this.axis = 'x'
       this.startingXPos = this.x
     }

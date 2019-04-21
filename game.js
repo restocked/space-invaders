@@ -5,7 +5,6 @@ function Game(canvas) {
   this.ctx = this.canvas.getContext('2d');
   this.spaceship = new Spaceship(canvas);
   this.enemies = [];
-  this.spaceshipBullets = [];
   this.enemiesBullets = [];
   this.bulletSpawn = 0.98;
   this.gameOver = false;
@@ -19,12 +18,10 @@ Game.prototype.startLoop = function () {
 
   const loop = () => {
     this.checkEnemies();
-
     this.clearCanvas();
     this.updateCanvas();
     this.drawCanvas();
     this.checkCollision();
-
     if (this.gameOver === false) {
       window.requestAnimationFrame(loop)
     } else {
@@ -45,9 +42,9 @@ Game.prototype.updateCanvas = function () {
   this.enemies.forEach((element) => {
     element.update()
   })
-  this.spaceshipBullets.forEach((element, index) => {
+  this.spaceship.bullets.forEach((element, index) => {
     if (element.y < 0) {
-      this.spaceshipBullets.splice(index, 1)
+      this.spaceship.bullets.splice(index, 1)
     }
     element.update()
   })
@@ -62,13 +59,12 @@ Game.prototype.drawCanvas = function () {
     element.draw()
   })
 
-  this.spaceshipBullets.forEach((element) => {
+  this.spaceship.bullets.forEach((element) => {
     element.draw()
   })
 
-
   if (Math.random() > this.bulletSpawn) {
-    let randomPos = Math.floor(Math.random() * this.enemies.length)
+    let randomPos = Math.floor(Math.random()*this.enemies.length)
     this.enemiesBullets.push(new Bullet(this.canvas, this.enemies[randomPos].x + this.enemies[randomPos].size / 2, this.enemies[randomPos].y + this.enemies[randomPos].size / 2, -1, '#FF4C20'))
   }
   this.enemiesBullets.forEach((element) => {
@@ -77,10 +73,9 @@ Game.prototype.drawCanvas = function () {
 }
 
 Game.prototype.checkCollision = function () {
-  this.spaceshipBullets.forEach((bullet, indexBullet) => {
-    this.enemies.forEach((enemy, indexEnemy) => {
-      if (bullet.y < enemy.y + enemy.size && bullet.y > enemy.y) {
-        if (bullet.x > enemy.x && bullet.x + bullet.width < enemy.x + enemy.size) {
+  this.spaceship.bullets.forEach((bullet, indexBullet) => {
+    this.enemies.forEach((enemy) => {
+      if (bullet.y < enemy.y + enemy.size && bullet.y > enemy.y && bullet.x > enemy.x && bullet.x + bullet.width < enemy.x + enemy.size) {
           enemy.image.src = './img/explosion.png'
           this.explosionSound.currentTime = 0
           this.explosionSound.volume = 0.2
@@ -89,9 +84,8 @@ Game.prototype.checkCollision = function () {
             let currentIndex = this.enemies.indexOf(enemy)
             this.enemies.splice(currentIndex, 1)
           }, 50)
-          this.spaceshipBullets.splice(indexBullet, 1)
-          this.spaceship.score += 100
-        }
+          this.spaceship.bullets.splice(indexBullet, 1)
+          this.spaceship.updateScore()
       }
     })
   })
@@ -119,14 +113,18 @@ Game.prototype.setGameOver = function (callaback) {
 }
 
 Game.prototype.createEnemies = function () {
+  //could have done better
   let enemiesNumber = Math.floor((this.canvas.width - 200) / 60)
   if (enemiesNumber % 2 !== 0) {
     enemiesNumber++
   }
+  let distanceX = 60
+  let distanceY = 40
+  let speedMultiplier = 1.5
   let images = ['./img/enemy-1-purple.png', './img/enemy-2-blue.png', './img/enemy-2-blue.png', './img/enemy-3-green.png', './img/enemy-3-green.png']
-  for (var i = 0; i < 5; i++) {
-    for (var j = 0; j < enemiesNumber; j++) {
-      this.enemies.push(new Enemy(this.canvas, (j*60)+60, i*40, images[i], (this.spaceship.currentLevel*1.5)+1.5))
+  for (var i=0; i<images.length; i++) {
+    for (var j=0; j<enemiesNumber; j++) {
+      this.enemies.push(new Enemy(this.canvas, (j*distanceX)+distanceX, i*distanceY, images[i], (this.spaceship.currentLevel*speedMultiplier)+speedMultiplier))
     }
   }
 }
@@ -135,6 +133,6 @@ Game.prototype.checkEnemies = function () {
   if (this.enemies.length === 0) {
     this.createEnemies()
     this.bulletSpawn -= 0.02
-    this.spaceship.currentLevel++
+    this.spaceship.levelUp()
   }
 }

@@ -5,7 +5,8 @@ function main() {
     return document.querySelector('main').innerHTML = html;
   }
 
-  // --- Home Page ---
+
+// --- Home Page ---
   function homePage() {
     buildDom(`
             <section>
@@ -26,7 +27,8 @@ function main() {
     document.querySelector('#instructions-button').addEventListener('click', instructionsPage)
   }
 
-  // --- Leaderboard Page ---
+
+// --- Leaderboard Page ---
   function leaderboardPage() {
     buildDom(`
             <section>
@@ -41,8 +43,8 @@ function main() {
                 <button class="home-page-button">Home</button>
             </section>
         `);
-    let myArray = getLeaderboardData()
-    myArray.splice(0,10).forEach((element)=> {
+    let leaderboardData = getLeaderboardData()
+    leaderboardData.splice(0,10).forEach((element)=> {
       var node = document.createElement("LI")
       node.innerHTML = `${element.name} | ${element.score} | ${element.level}`;
       document.querySelector('#score').appendChild(node);
@@ -51,7 +53,28 @@ function main() {
     document.querySelector('.home-page-button').addEventListener('click', homePage)
   }
 
-  // --- Settings page ---
+
+// --- Instructions Page ---
+  function instructionsPage() {
+    buildDom(`
+      <section>
+        <h1>Instructions</h1>
+        <div id="instructions">
+          <p>- Use the <span id="color-text-ins">left</span> and <span id="color-text-ins">right</span> arrow keys to move the spaceship.</p>
+          <p>- Use the <span id="color-text-ins">spacebar</span> to shoot the  aliens.</p>
+          <p>- Kill the aliens to earn points.</p>
+        </div>
+        <button id="start-game-button">Play</button>
+        <button class="home-page-button">Home</button>
+      </section>
+    
+    `)
+    document.querySelector('#start-game-button').addEventListener('click', playingPage)
+    document.querySelector('.home-page-button').addEventListener('click', homePage)
+  }
+
+
+// --- Settings page ---
   function settingsPage() {
     buildDom(`
             <section>
@@ -111,11 +134,11 @@ function main() {
     game.startLoop();
     game.setGameOver(savePlayerName)
 
-    // movements
+
     document.addEventListener('keydown', function (event) {
       if (event.keyCode === 32) {
-        if (game.spaceshipBullets.length < 12) {
-          game.spaceshipBullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width / 2, game.spaceship.y, 1, '#EBFF20'))
+        if (game.spaceship.bullets.length < 12) {
+          game.spaceship.bullets.push(new Bullet(myCanvas, game.spaceship.x + game.spaceship.width / 2, game.spaceship.y, 1, '#EBFF20'))
           game.shootSound.currentTime =0
           game.shootSound.volume = 0.1
           game.shootSound.play()
@@ -133,13 +156,10 @@ function main() {
       if (event.keyCode === 37 || event.keyCode === 39) {
         game.spaceship.setDirection(0)
       }
-      else if (event.keyCode === 37 || event.keyCode === 39 && leftIsPressed) {
-        //game
-      }
     })
   }
 
-  // --- Add name page ---
+// --- Add name page ---
   function savePlayerName() {
     buildDom(`
             <section>
@@ -162,12 +182,11 @@ function main() {
           level: this.spaceship.currentLevel
         }
         window.localStorage.setItem(player.name, JSON.stringify(player))
-        
         gameOverPage()
       });
   }
 
-  // --- Game over page ---
+// --- Game over page ---
   function gameOverPage() {
     buildDom(`
             <section id="game-over-page">
@@ -187,40 +206,19 @@ function main() {
 
   function getLeaderboardData() {
     let keys = Object.keys(window.localStorage);
-    
-    let testArray = [];
-
-    if (keys.length <10) {
+    let leaderboardArray = [];
+    if (keys.length<10) {
       for (let z=0; z<10-keys.length; z++) {
-        testArray.push({name: '--', score: 0, level: '0'})
+        leaderboardArray.push({name: '--', score: 0, level: '0'})
       }
     }
     for (let i=0; i<keys.length; i++) {
       let obj = JSON.parse(window.localStorage[keys[i]])
-      testArray.push(obj)
+      leaderboardArray.push(obj)
     }
-    testArray.sort((a,b) => b.score-a.score);
+    leaderboardArray.sort((a,b) => b.score-a.score);
 
-    return testArray
-
-  }
-
-  function instructionsPage() {
-    buildDom(`
-      <section>
-        <h1>Instructions</h1>
-        <div id="instructions">
-          <p>- Use the <span id="color-text-ins">left</span> and <span id="color-text-ins">right</span> arrow keys to move the spaceship.</p>
-          <p>- Use the <span id="color-text-ins">spacebar</span> to shoot the  aliens.</p>
-          <p>- Kill the aliens to earn points.</p>
-        </div>
-        <button id="start-game-button">Play</button>
-        <button class="home-page-button">Home</button>
-      </section>
-    
-    `)
-    document.querySelector('#start-game-button').addEventListener('click', playingPage)
-    document.querySelector('.home-page-button').addEventListener('click', homePage)
+    return leaderboardArray
   }
   homePage()
 }

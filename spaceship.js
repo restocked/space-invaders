@@ -12,6 +12,7 @@ function Spaceship(canvas) {
   this.lives = 3;
   this.score = 0;
   this.currentLevel = 0;
+  this.bullets = [];
   this.image = new Image()
   this.image.src = './test-img/spaceship-3.png'
 }
@@ -37,5 +38,12 @@ Spaceship.prototype.removeLife = function () {
   this.lives--
   document.querySelector('.live-img').remove()
   return (this.lives === 0 ? true : false)
-  
+}
+
+Spaceship.prototype.updateScore = function () {
+  this.score += 100
+}
+
+Spaceship.prototype.levelUp = function () {
+  this.currentLevel++
 }
