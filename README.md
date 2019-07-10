@@ -4,7 +4,7 @@
 
 ## Description
 A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
-[Play Here](https://wervux.github.io/space-invaders-arcade-game/)
+[Play Here](https://wervux.github.io/space-invaders)
 
 
 ## MVP
@@ -177,8 +177,8 @@ Task definition in order of priority
 
 ### Git
 URls for the project repo and deploy
-- [Link Repo](https://github.com/wervux/space-invaders-arcade-game)
-- [Link Deploy](https://wervux.github.io/space-invaders-arcade-game/)
+- [Link Repo](https://github.com/wervux/space-invaders)
+- [Link Deploy](https://wervux.github.io/space-invaders)
 
 
 ### Slides
