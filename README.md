@@ -4,6 +4,7 @@
 
 ## Description
 A simple replication of Space Invaders, one of the most famous arcade game published by Taito in 1978.
+[Play Here](https://wervux.github.io/space-invaders-arcade-game/)
 
 
 ## MVP
